@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio for Mac
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ethersphere", "ethersphere.csproj", "{51E4A072-BDCB-EE21-E1F3-45F2F7396B38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ethersphere.Editor", "ethersphere.Editor.csproj", "{A0B0A723-51E8-46EA-80E2-9503FE07B832}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51E4A072-BDCB-EE21-E1F3-45F2F7396B38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51E4A072-BDCB-EE21-E1F3-45F2F7396B38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51E4A072-BDCB-EE21-E1F3-45F2F7396B38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51E4A072-BDCB-EE21-E1F3-45F2F7396B38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0B0A723-51E8-46EA-80E2-9503FE07B832}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0B0A723-51E8-46EA-80E2-9503FE07B832}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0B0A723-51E8-46EA-80E2-9503FE07B832}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0B0A723-51E8-46EA-80E2-9503FE07B832}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
