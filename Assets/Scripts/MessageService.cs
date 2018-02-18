@@ -4,7 +4,7 @@ namespace Mapbox.Unity.Ar
 	using System.Collections.Generic;
 	using UnityEngine;
 	using UnityEngine.Networking;
-	using SimpleJSON;
+    using MiniJSON;
 
 	public class MessageService : MonoBehaviour {
 
@@ -38,7 +38,7 @@ namespace Mapbox.Unity.Ar
 			*/
 		}
 
-		public void LoadAllMessages(){
+        public IEnumerator LoadAllMessages(){
 
 			List<GameObject> messageObjectList = new List<GameObject> ();
 
@@ -76,9 +76,6 @@ namespace Mapbox.Unity.Ar
 				IList results = (IList)deserializedResponse;
 
 				foreach (IDictionary result in results) {
-					float lat = (string)result["lat"];
-					string name = (string)result["name"];
-
 					GameObject MessageBubble = Instantiate (messagePrefabAR,mapRootTransform);
 					Message message = MessageBubble.GetComponent<Message>();
 
@@ -100,8 +97,7 @@ namespace Mapbox.Unity.Ar
 			form.AddField("lng", lon.ToString());
 			form.AddField("message", text);
 
-			var w = UnityWebRequest.Post (apiUrl, form);
-
+            var w = UnityWebRequest.Post(apiUrl, form);
 			w.SendWebRequest();
 		}
 	}
