@@ -72,7 +72,7 @@ namespace Mapbox.Unity.Ar
 			form.AddField("lng", lon.ToString());
 			form.AddField("message", "Cooper wuz here");
 
-			var w = UnityWebRequest.Post(apiUrl, form)
+            var w = UnityWebRequest.Post(apiUrl, form);
 
 			w.SendWebRequest();
 		}

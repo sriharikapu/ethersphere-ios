@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GameSparksManager : MonoBehaviour {
 
 	/// <summary>The GameSparks Manager singleton</summary>
