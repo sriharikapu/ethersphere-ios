@@ -22,6 +22,7 @@ namespace Mapbox.Unity.Ar
 
 		void Awake(){
 			_instance = this;
+			StartCoroutine (LoadAllMessages());
 		}
 
 		public void RemoveAllMessages(){
