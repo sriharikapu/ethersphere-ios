@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/GOMAP_TOTAL/GO Map - 3D Map For AR Gaming/goplaces_eth_restaurants.unity
     guid: 0cd2f602eeb454f7fa66e13a87dc7275
-  - enabled: 1
+  - enabled: 0
     path: Assets/Messages_Only.unity
     guid: 23eb95968945b4aaf959c17d5dfac9c9
+  - enabled: 1
+    path: Assets/UnityARKitPlugin/Examples/UnityARKitScene/UnityARKitScene.unity
+    guid: c159f2591a9b5c843b0a0442451f78f8
