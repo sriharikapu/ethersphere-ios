@@ -1,9 +1,9 @@
-﻿namespace Mapbox.Unity.Ar
+namespace Mapbox.Unity.Ar
 {
 	using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine;
-	using GameSparks.Core;
+	using UnityEngine.Networking;
 
 	public class MessageService : MonoBehaviour {
 
@@ -13,7 +13,7 @@
 		/// objects are instantiated here.
 		/// </summary>
 		private static MessageService _instance;
-		public static MessageService Instance { get { return _instance; } } 
+		public static MessageService Instance { get { return _instance; } }
 
 		public Transform mapRootTransform;
 
@@ -24,6 +24,7 @@
 		}
 
 		public void RemoveAllMessages(){
+			/*
 			new GameSparks.Api.Requests.LogEventRequest ()
 				.SetEventKey ("REMOVE_MESSAGES")
 				.Send ((response) => {
@@ -33,18 +34,20 @@
 					Debug.Log ("Error Saving Message Data...");
 				}
 			});
+			*/
 		}
 
 		public void LoadAllMessages(){
 
 			List<GameObject> messageObjectList = new List<GameObject> ();
-			
+
+			/*
 			new GameSparks.Api.Requests.LogEventRequest().SetEventKey("LOAD_MESSAGE").Send((response) => {
 				if (!response.HasErrors) {
 					Debug.Log("Received Player Data From GameSparks...");
 					List<GSData> locations = response.ScriptData.GetGSDataList ("all_Messages");
 					for (var e = locations.GetEnumerator (); e.MoveNext ();) {
-						
+
 						GameObject MessageBubble = Instantiate (messagePrefabAR,mapRootTransform);
 						Message message = MessageBubble.GetComponent<Message>();
 
@@ -57,25 +60,28 @@
 					Debug.Log("Error Loading Message Data...");
 				}
 			});
+			*/
 			//pass list of objects to ARmessage provider so they can be placed
 			ARMessageProvider.Instance.LoadARMessages (messageObjectList);
 		}
 
 		public void SaveMessage(double lat, double lon, string text){
-			new GameSparks.Api.Requests.LogEventRequest ()
+			WWWForm form = new WWWForm();
+			var apiUrl = "http://8a90bb4d.ngrok.io/api/messages/new";
+			form.AddField("lat", String(lat));
+			form.AddField("lng", String(lon));
+			form.AddField("message", "Cooper wuz here");
 
-				.SetEventKey ("SAVE_GEO_MESSAGE")
-				.SetEventAttribute ("LAT", lat.ToString())
-				.SetEventAttribute ("LON", lon.ToString())
-				.SetEventAttribute ("TEXT", text)
-				.Send ((response) => {
-					
-				if (!response.HasErrors) {
-					Debug.Log ("Message Saved To GameSparks...");
-				} else {
-					Debug.Log ("Error Saving Message Data...");
+			using (var w = UnityWebRequest.Post(apiUrl, form))
+			{
+				yield return w.SendWebRequest();
+				if (w.isNetworkError || w.isHttpError) {
+					Debug.Log(w.error);
 				}
-			});
+				else {
+					Debug.Log("Finished");
+				}
+			}
 		}
 	}
 }

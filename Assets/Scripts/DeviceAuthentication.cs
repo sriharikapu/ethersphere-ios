@@ -1,4 +1,4 @@
-﻿namespace Mapbox.Unity.Ar
+namespace Mapbox.Unity.Ar
 {
 	using System.Collections;
 	using System.Collections.Generic;
@@ -7,7 +7,7 @@
 	public class DeviceAuthentication : MonoBehaviour {
 		/// <summary>
 		/// Authenticates our device with GameSparks. Once authenticated, we show the UI
-		/// and load initial messages. 
+		/// and load initial messages.
 		/// </summary>
 		void Start () {
 			StartCoroutine (DelayAuthenticateRoutine ());
@@ -17,6 +17,9 @@
 
 			yield return new WaitForSeconds (1f);
 
+			ARMessageProvider.Instance.deviceAuthenticated = true;
+
+			/*
 			new GameSparks.Api.Requests.DeviceAuthenticationRequest().Send((response) => {
 				if (!response.HasErrors) {
 					Debug.Log("Device Authenticated...");
@@ -26,6 +29,7 @@
 					Debug.Log("Error Authenticating Device...");
 				}
 			});
+			*/
 		}
 	}
 }
