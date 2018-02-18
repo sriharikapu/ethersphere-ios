@@ -68,13 +68,13 @@ namespace Mapbox.Unity.Ar
 		public void SaveMessage(double lat, double lon, string text){
 			WWWForm form = new WWWForm();
 			var apiUrl = "http://8a90bb4d.ngrok.io/api/messages/new";
-			form.AddField("lat", String(lat));
-			form.AddField("lng", String(lon));
+			form.AddField("lat", lat.ToString());
+			form.AddField("lng", lon.ToString());
 			form.AddField("message", "Cooper wuz here");
 
 			using (var w = UnityWebRequest.Post(apiUrl, form))
 			{
-				yield return w.SendWebRequest();
+				w.SendWebRequest();
 				if (w.isNetworkError || w.isHttpError) {
 					Debug.Log(w.error);
 				}
