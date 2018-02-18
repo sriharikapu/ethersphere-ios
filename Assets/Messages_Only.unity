@@ -1343,6 +1343,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 1992754670917148, guid: 60dd96d0e192b43fbbf245bcdf15b6cb, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 60dd96d0e192b43fbbf245bcdf15b6cb, type: 2}
   m_IsPrefabParent: 0
