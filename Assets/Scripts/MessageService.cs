@@ -64,7 +64,10 @@ namespace Mapbox.Unity.Ar
 			});
 			*/
 
-			string url = "http://8a90bb4d.ngrok.io/api/messages/all";
+			double lat = ARMessageProvider.Instance.deviceLocation._currentLocation.LatitudeLongitude.x;
+			double lon = ARMessageProvider.Instance.deviceLocation._currentLocation.LatitudeLongitude.y;
+
+			var url = string.Format("http://8a90bb4d.ngrok.io/api/messages/near?lat={1}&lng={2}", lat.ToString(), lon.ToString());
 			var www = new WWW(url);
 
 			yield return www;
