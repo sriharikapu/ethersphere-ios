@@ -84,6 +84,9 @@ namespace Mapbox.Unity.Ar
 					message.text = (string)result ["message"];
 					messageObjectList.Add(MessageBubble);
 				}
+			} else {
+				Debug.Log("Error loading messages");
+				Debug.Log(www.error);
 			}
 
 			//pass list of objects to ARmessage provider so they can be placed
