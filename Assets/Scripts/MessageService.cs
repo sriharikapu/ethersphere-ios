@@ -94,15 +94,15 @@ namespace Mapbox.Unity.Ar
 			ARMessageProvider.Instance.LoadARMessages (messageObjectList);
 		}
 
-		public void SaveMessage(double lat, double lon, string text){
+		public IEnumerator SaveMessage(double lat, double lon, string text){
 			WWWForm form = new WWWForm();
 			var apiUrl = "http://8a90bb4d.ngrok.io/api/messages/new";
 			form.AddField("lat", lat.ToString());
 			form.AddField("lng", lon.ToString());
 			form.AddField("message", text);
 
-            var w = UnityWebRequest.Post(apiUrl, form);
-			w.SendWebRequest();
+			UnityWebRequest w = UnityWebRequest.Post(apiUrl, form);
+			yield return w.SendWebRequest();
 		}
 	}
 }

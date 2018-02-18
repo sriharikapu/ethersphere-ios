@@ -48,7 +48,7 @@
 			double lat = ARMessageProvider.Instance.deviceLocation._currentLocation.LatitudeLongitude.x;
 			double lon = ARMessageProvider.Instance.deviceLocation._currentLocation.LatitudeLongitude.y;
 
-			MessageService.Instance.SaveMessage (lat, lon, messageText.text);
+			StartCoroutine (MessageService.Instance.SaveMessage (lat, lon, messageText.text));
 
 			messageText.text = "";
 			HomeScreen.SetActive (true);
@@ -57,7 +57,7 @@
 		}
 
 		IEnumerator DelayLoadMessagesRoutine(){
-			yield return new WaitForSeconds (1f);
+			yield return new WaitForSeconds (2f);
 			MessageService.Instance.LoadAllMessages ();
 		}
 	}
