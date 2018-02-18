@@ -26,6 +26,8 @@ public class Message : MonoBehaviour {
 		//set the camera in the text's Canvas component, I needed to add this
 		//so the layer of the text always shows up over the message sprite.
 		messageText.GetComponent<Canvas> ().worldCamera = Camera.main;
+
+
 	}
 	
 	void Update () {
