@@ -42,7 +42,7 @@ MonoBehaviour:
   basePbrBlendDoubleSidedMaterial: {fileID: 2100000, guid: b2b07ce943390e34993803beeb1e8548,
     type: 2}
   authConfig:
-    apiKey: '** INSERT YOUR API KEY HERE **'
+    apiKey: AIzaSyCMI3IKmYe1G_gGeNbXWs4S7QxNrI---fk
     clientId: 
     clientSecret: 
     additionalScopes: []
@@ -54,4 +54,4 @@ MonoBehaviour:
     cachePathOverride: 
   sendEditorAnalytics: 1
   warnOnSourceOverwrite: 1
-  warnOfApiCompatibility: 1
+  warnOfApiCompatibility: 0
