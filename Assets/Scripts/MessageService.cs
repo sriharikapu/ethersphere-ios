@@ -4,6 +4,7 @@ namespace Mapbox.Unity.Ar
 	using System.Collections.Generic;
 	using UnityEngine;
 	using UnityEngine.Networking;
+    using MiniJSON;
 
 	public class MessageService : MonoBehaviour {
 
@@ -37,7 +38,7 @@ namespace Mapbox.Unity.Ar
 			*/
 		}
 
-		public void LoadAllMessages(){
+        public IEnumerator LoadAllMessages(){
 
 			List<GameObject> messageObjectList = new List<GameObject> ();
 
@@ -61,6 +62,30 @@ namespace Mapbox.Unity.Ar
 				}
 			});
 			*/
+
+			string url = "http://8a90bb4d.ngrok.io/api/messages/all";
+			var www = new WWW(url);
+
+			yield return www;
+
+			if (string.IsNullOrEmpty (www.error)) {
+				string response = www.text;
+				//Deserialize the json response
+				IDictionary deserializedResponse = (IDictionary)Json.Deserialize (response);
+
+				IList results = (IList)deserializedResponse;
+
+				foreach (IDictionary result in results) {
+					GameObject MessageBubble = Instantiate (messagePrefabAR,mapRootTransform);
+					Message message = MessageBubble.GetComponent<Message>();
+
+					message.latitude = double.Parse((string)result["lat"]);
+					message.longitude = double.Parse((string)result["lng"]);
+					message.text = (string)result ["message"];
+					messageObjectList.Add(MessageBubble);
+				}
+			}
+
 			//pass list of objects to ARmessage provider so they can be placed
 			ARMessageProvider.Instance.LoadARMessages (messageObjectList);
 		}
@@ -70,10 +95,9 @@ namespace Mapbox.Unity.Ar
 			var apiUrl = "http://8a90bb4d.ngrok.io/api/messages/new";
 			form.AddField("lat", lat.ToString());
 			form.AddField("lng", lon.ToString());
-			form.AddField("message", "Cooper wuz here");
+			form.AddField("message", text);
 
             var w = UnityWebRequest.Post(apiUrl, form);
-
 			w.SendWebRequest();
 		}
 	}
