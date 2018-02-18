@@ -81,7 +81,7 @@ namespace Mapbox.Unity.Ar
 
 				foreach (IDictionary result in results) {
 					GameObject MessageBubble = Instantiate (messagePrefabAR,mapRootTransform);
-					Message message = MessageBubble.GetComponent<Message>();
+                    Message message = MessageBubble.GetComponent<Message>();
 
 					message.latitude = (double) result ["lat"];
 					message.longitude = (double) result ["lng"];
