@@ -72,9 +72,9 @@ namespace Mapbox.Unity.Ar
 			if (string.IsNullOrEmpty (www.error)) {
 				string response = www.text;
 				//Deserialize the json response
-				IDictionary deserializedResponse = (IDictionary)Json.Deserialize (response);
+				IList results = (IList)Json.Deserialize (response);
 
-				IList results = (IList)deserializedResponse;
+			
 
 				foreach (IDictionary result in results) {
 					GameObject MessageBubble = Instantiate (messagePrefabAR,mapRootTransform);
