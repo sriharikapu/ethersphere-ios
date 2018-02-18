@@ -10,7 +10,7 @@
 	public class ARMessageProvider : MonoBehaviour {
 		/// <summary>
 		/// This loads messages according to GPS coordinates, removes messages, and repositions messages
-		/// within the scene. 
+		/// within the scene.
 		/// </summary>
 		private static ARMessageProvider _instance;
 		public static ARMessageProvider Instance { get { return _instance; } }
@@ -37,7 +37,7 @@
 					//set UI active once we are authenticated
 					UIBehavior.Instance.ShowUI ();
 					//load first messages
-					MessageService.Instance.LoadAllMessages ();
+					StartCoroutine(MessageService.Instance.LoadAllMessages ());
 					Unity.Utilities.Console.Instance.Log("Loading UI and initial messages!", "lightblue");
 				} else {
 					UpdateARMessageLocations (deviceLocation._currentLocation.LatitudeLongitude);
@@ -70,7 +70,7 @@
 
 				Message thisMessage = messageObject.GetComponent<Message> ();
 
-				Vector3 _targetPosition =_map.Root.TransformPoint(Conversions.GeoToWorldPosition(thisMessage.latitude,thisMessage.longitude, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz()); 
+				Vector3 _targetPosition =_map.Root.TransformPoint(Conversions.GeoToWorldPosition(thisMessage.latitude,thisMessage.longitude, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz());
 
 				Debug.Log ("~~~~TARGET POSITION: " + _targetPosition);
 
@@ -91,7 +91,7 @@
 
 					Message message = messageObject.GetComponent<Message> ();
 
-					Vector3 _targetPosition =_map.Root.TransformPoint(Conversions.GeoToWorldPosition(message.latitude,message.longitude, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz()); 
+					Vector3 _targetPosition =_map.Root.TransformPoint(Conversions.GeoToWorldPosition(message.latitude,message.longitude, _map.CenterMercator, _map.WorldRelativeScale).ToVector3xz());
 
 					messageObject.transform.position = _targetPosition;
 				}
@@ -99,4 +99,3 @@
 		}
 	}
 }
-

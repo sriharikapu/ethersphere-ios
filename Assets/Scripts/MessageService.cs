@@ -22,7 +22,8 @@ namespace Mapbox.Unity.Ar
 
 		void Awake(){
 			_instance = this;
-			StartCoroutine (LoadAllMessages());
+			Debug.Log("Message Service --- AWAKE");
+			// StartCoroutine (LoadAllMessages());
 		}
 
 		public void RemoveAllMessages(){
@@ -68,8 +69,8 @@ namespace Mapbox.Unity.Ar
 			double lon = ARMessageProvider.Instance.deviceLocation._currentLocation.LatitudeLongitude.y;
 
 			var url = string.Format("http://8a90bb4d.ngrok.io/api/messages/near?lat={0}&lng={1}", lat.ToString(), lon.ToString());
+			Debug.Log(url);
 			var www = new WWW(url);
-
 			yield return www;
 
 			if (string.IsNullOrEmpty (www.error)) {
@@ -77,7 +78,7 @@ namespace Mapbox.Unity.Ar
 				//Deserialize the json response
 				IList results = (IList)Json.Deserialize (response);
 
-			
+
 
 				foreach (IDictionary result in results) {
 					GameObject MessageBubble = Instantiate (messagePrefabAR,mapRootTransform);
