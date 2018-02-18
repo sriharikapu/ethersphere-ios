@@ -80,8 +80,8 @@ namespace Mapbox.Unity.Ar
 					GameObject MessageBubble = Instantiate (messagePrefabAR,mapRootTransform);
 					Message message = MessageBubble.GetComponent<Message>();
 
-					message.latitude = double.Parse((string)result["lat"]);
-					message.longitude = double.Parse((string)result["lng"]);
+					message.latitude = (double) result ["lat"];
+					message.longitude = (double) result ["lng"];
 					message.text = (string)result ["message"];
 					messageObjectList.Add(MessageBubble);
 				}
